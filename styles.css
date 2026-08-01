@@ -12,51 +12,79 @@ body {
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #e0f2fe, #f0f9ff, #e0e7ff);
-  background-size: 200% 200%;
-  animation: gradientShift 12s ease infinite;
+  background: #f1f5f9; /* cinza bem claro */
   color: #1e293b;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 28px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 32px;
   text-align: center;
   color: #0f172a;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
 }
 
 .card {
   width: 100%;
   max-width: 480px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 24px;
-  padding: 32px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 36px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 10px 40px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
               box-shadow 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: 
-    0 16px 48px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 20px 50px rgba(0, 0, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
+/* ===== RÁDIOS (Sim / Não) ===== */
+.pergunta {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+  color: #334155;
+}
+
+.radio-group {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 0;
+}
+
+.radio-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #14b8a6; /* turquesa */
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ===== Labels e inputs ===== */
 label {
   display: block;
   font-weight: 600;
@@ -69,10 +97,10 @@ input,
 select {
   width: 100%;
   padding: 13px 16px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.35);
   border-radius: 14px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.65);
   color: #1e293b;
   margin-bottom: 18px;
   transition: all 0.3s ease;
@@ -81,9 +109,9 @@ select {
 
 input:focus,
 select:focus {
-  border-color: #38bdf8;
+  border-color: #14b8a6;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
 }
 
 input::placeholder {
@@ -94,10 +122,11 @@ input::placeholder {
   display: none !important;
 }
 
+/* ===== Botão ===== */
 button {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
   color: white;
   border: none;
   border-radius: 14px;
@@ -105,21 +134,22 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 4px 18px rgba(20, 184, 166, 0.35);
   letter-spacing: 0.3px;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.45);
-  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  box-shadow: 0 8px 28px rgba(20, 184, 166, 0.45);
+  background: linear-gradient(135deg, #0f766e, #0d9488);
 }
 
 button:active {
   transform: translateY(0);
-  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.3);
+  box-shadow: 0 3px 12px rgba(20, 184, 166, 0.3);
 }
 
+/* ===== Resultado ===== */
 #resultado {
   margin-top: 28px;
   padding-top: 24px;
@@ -166,7 +196,7 @@ button:active {
 
 .destaque {
   font-weight: 700;
-  color: #0284c7;
+  color: #0d9488; /* turquesa */
   white-space: nowrap;
 }
 
@@ -175,12 +205,12 @@ button:active {
   color: #64748b;
   margin-top: 18px;
   line-height: 1.5;
-  background: rgba(241, 245, 249, 0.6);
+  background: rgba(241, 245, 249, 0.7);
   padding: 12px 14px;
   border-radius: 12px;
 }
 
-/* Animação suave ao aparecer o campo de acabamento */
+/* Animação do campo de acabamento */
 #campo-acabamento {
   animation: fadeIn 0.35s ease;
 }
@@ -193,10 +223,15 @@ button:active {
 /* Responsivo */
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
   }
   
   .card {
-    padding: 24px 20px;
+    padding: 28px 22px;
+  }
+
+  .radio-group {
+    gap: 20px;
   }
 }
