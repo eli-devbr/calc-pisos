@@ -12,45 +12,58 @@ body {
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  background: #f1f5f9; /* cinza bem claro */
+  background: linear-gradient(160deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
   color: #1e293b;
 }
 
+/* Título com fonte diferente */
 h1 {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
   margin-bottom: 32px;
   text-align: center;
   color: #0f172a;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8, #0ea5e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Card Liquid Glass */
 .card {
   width: 100%;
   max-width: 480px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(241, 245, 249, 0.55) 100%
+  );
   border-radius: 28px;
   padding: 36px 30px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 12px 40px rgba(14, 165, 233, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(148, 163, 184, 0.15);
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
               box-shadow 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 20px 50px rgba(14, 165, 233, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -1px 1px rgba(148, 163, 184, 0.2);
 }
 
-/* ===== RÁDIOS (Sim / Não) ===== */
+/* ===== Rádios ===== */
 .pergunta {
   display: block;
   font-weight: 600;
@@ -79,7 +92,7 @@ h1 {
 .radio-group input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: #14b8a6; /* turquesa */
+  accent-color: #0ea5e9;
   cursor: pointer;
   margin: 0;
 }
@@ -97,10 +110,14 @@ input,
 select {
   width: 100%;
   padding: 13px 16px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1.5px solid rgba(148, 163, 184, 0.35);
   border-radius: 14px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.65);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(248, 250, 252, 0.7)
+  );
   color: #1e293b;
   margin-bottom: 18px;
   transition: all 0.3s ease;
@@ -109,9 +126,9 @@ select {
 
 input:focus,
 select:focus {
-  border-color: #14b8a6;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
+  border-color: #38bdf8;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.18);
 }
 
 input::placeholder {
@@ -122,11 +139,12 @@ input::placeholder {
   display: none !important;
 }
 
-/* ===== Botão ===== */
+/* ===== Botão Calcular ===== */
 button {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #0d9488, #14b8a6);
+  background: linear-gradient(135deg, #0284c7, #0ea5e9, #38bdf8);
+  background-size: 200% 200%;
   color: white;
   border: none;
   border-radius: 14px;
@@ -134,19 +152,26 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 4px 18px rgba(20, 184, 166, 0.35);
+  box-shadow: 
+    0 4px 18px rgba(14, 165, 233, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   letter-spacing: 0.3px;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(20, 184, 166, 0.45);
-  background: linear-gradient(135deg, #0f766e, #0d9488);
+  background-position: 100% 0;
+  box-shadow: 
+    0 8px 28px rgba(14, 165, 233, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 button:active {
-  transform: translateY(0);
-  box-shadow: 0 3px 12px rgba(20, 184, 166, 0.3);
+  transform: translateY(1px);
+  background: linear-gradient(135deg, #0369a1, #0284c7, #0ea5e9);
+  box-shadow: 
+    0 2px 10px rgba(14, 165, 233, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Resultado ===== */
@@ -196,7 +221,7 @@ button:active {
 
 .destaque {
   font-weight: 700;
-  color: #0d9488; /* turquesa */
+  color: #0284c7;
   white-space: nowrap;
 }
 
@@ -205,9 +230,14 @@ button:active {
   color: #64748b;
   margin-top: 18px;
   line-height: 1.5;
-  background: rgba(241, 245, 249, 0.7);
+  background: linear-gradient(
+    145deg,
+    rgba(241, 245, 249, 0.8),
+    rgba(226, 232, 240, 0.6)
+  );
   padding: 12px 14px;
   border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 /* Animação do campo de acabamento */
@@ -223,8 +253,8 @@ button:active {
 /* Responsivo */
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
+    font-size: 1.45rem;
+    letter-spacing: 1.2px;
   }
   
   .card {
