@@ -94,7 +94,7 @@ function calcular() {
   } else {
     // Não elegível → unifica tudo
     const argamassa = Math.ceil(area / 3);
-    html += `<li>Argamassas necessárias: <span class="destaque">${argamassa} saco(s)</span> (1 a cada 3 m²)</li>`;
+    html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span> (1 a cada 3 m²)</li>`;
   }
 
   // ===== REJUNTE =====
