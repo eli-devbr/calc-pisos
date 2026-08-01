@@ -48,7 +48,7 @@ h1 {
 
 /* Card Liquid Glass */
 .card {
-  position: relative; /* necessário para o ::before */
+  position: relative;
   width: 100%;
   max-width: 480px;
   background: linear-gradient(
@@ -110,7 +110,6 @@ h1 {
   z-index: 0;
 }
 
-/* Classe que dispara a animação (adicione via JS no clique do botão) */
 .card.border-animate::before {
   animation: minhoca-border 0.9s linear forwards;
 }
