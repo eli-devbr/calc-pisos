@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Piso</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Calculadora de Materiais para Piso</h1>
+
+  <div class="card">
+    <label for="metragem">Metragem (m²)</label>
+    <input type="number" id="metragem" min="0.1" step="0.01" placeholder="Ex: 45.5">
+
+    <label for="tamanho">Tamanho do piso</label>
+    <select id="tamanho">
+      <option value="">Selecione...</option>
+      <option value="20x20">20x20 cm</option>
+      <option value="30x30">30x30 cm</option>
+      <option value="33x33">33x33 cm</option>
+      <option value="45x45">45x45 cm</option>
+      <option value="50x50">50x50 cm</option>
+      <option value="60x60">60x60 cm</option>
+      <option value="60x90">60x90 cm</option>
+      <option value="60x120">60x120 cm</option>
+      <option value="80x80">80x80 cm</option>
+      <option value="90x90">90x90 cm</option>
+      <option value="100x100">100x100 cm</option>
+      <option value="120x120">120x120 cm</option>
+      <option value="120x180">120x180 cm</option>
+    </select>
+
+    <label for="tipo">Tipo de piso</label>
+    <select id="tipo">
+      <option value="">Selecione...</option>
+      <option value="ceramica">Cerâmica</option>
+      <option value="porcelanato">Porcelanato</option>
+    </select>
+
+    <div id="campo-acabamento" class="hidden">
+      <label for="acabamento">Acabamento (Cerâmica)</label>
+      <select id="acabamento">
+        <option value="">Selecione...</option>
+        <option value="retificado">Retificado</option>
+        <option value="boleado">Boleado</option>
+      </select>
+    </div>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado" class="hidden"></div>
+  </div>
+</body>
+</html>
