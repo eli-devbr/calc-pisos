@@ -90,7 +90,10 @@ function calcular() {
   // Cálculos comuns
   const fator = getFator(tamanho);
   const espacadores = Math.ceil(area * fator);
+
+  // Rejunte: 1 kg a cada 4 m², convertido para pacotes de 1 kg
   const rejunteKg = Math.ceil(area / 4);
+  const rejuntePacotes = rejunteKg;
 
   let html = "<h2>Resultado</h2><ul>";
 
@@ -107,7 +110,7 @@ function calcular() {
       const totalNecessario = Math.ceil(area / 3);
       const adicionais = Math.max(0, totalNecessario - gratis);
 
-      html += `<li>Argamassa AC1 grátis: <span class="destaque">${gratis} saco(s)</span> (1 a cada 4 m²)</li>`;
+      html += `<li>Argamassa AC1 grátis: <span class="destaque">${gratis} saco(s)</span></li>`;
       html += `<li>Argamassa adicional necessária: <span class="destaque">${adicionais} saco(s)</span></li>`;
     }
   } else {
@@ -117,7 +120,7 @@ function calcular() {
   }
 
   // ===== REJUNTE =====
-  html += `<li>Rejunte: <span class="destaque">${rejunteKg} kg</span> (1 kg a cada 4 m²)</li>`;
+  html += `<li>Rejunte: <span class="destaque">${rejuntePacotes} pacote(s)</span></li>`;
 
   // ===== ESPAÇADOR =====
   if (tipo === "ceramica" && acabamento === "boleado") {
