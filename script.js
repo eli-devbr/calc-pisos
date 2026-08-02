@@ -15,6 +15,23 @@ const fatores = {
   "120x180": 8
 };
 
+// Cruzetas (unidades por m²)
+const fatoresCruzeta = {
+  "20x20": 36,
+  "30x30": 20,
+  "33x33": 18,
+  "45x45": 10,
+  "50x50": 8,
+  "60x60": 6,
+  "60x90": 5,
+  "60x120": 4,
+  "80x80": 4,
+  "90x90": 3,
+  "100x100": 3,
+  "120x120": 2.5,
+  "120x180": 2
+};
+
 // Mostra/esconde o campo de acabamento conforme o tipo
 document.getElementById("tipo").addEventListener("change", function () {
   const campo = document.getElementById("campo-acabamento");
@@ -45,13 +62,16 @@ document.querySelectorAll('input[name="argamassa"]').forEach(radio => {
   });
 });
 
-function getFator(tamanho) {
-  if (fatores[tamanho]) return fatores[tamanho];
+function getFator(tamanho, usarCruzeta = false) {
+  const tabela = usarCruzeta ? fatoresCruzeta : fatores;
+
+  if (tabela[tamanho]) return tabela[tamanho];
 
   // Fallback genérico (caso algum tamanho não esteja na tabela)
   const lados = tamanho.split("x").map(Number);
   const ladoMedio = (lados[0] + lados[1]) / 2;
-  return 100 / (ladoMedio * 1.8);
+  // Cruzeta usa fator menor que nivelador
+  return usarCruzeta ? 100 / (ladoMedio * 4) : 100 / (ladoMedio * 1.8);
 }
 
 function calcular() {
@@ -86,9 +106,10 @@ function calcular() {
   }
 
   const elegivelGratis = argamassaGratis.value === "sim";
+  const usarCruzeta = (tipo === "ceramica" && acabamento === "boleado");
 
   // Cálculos comuns
-  const fator = getFator(tamanho);
+  const fator = getFator(tamanho, usarCruzeta);
   const espacadores = Math.ceil(area * fator);
 
   // Rejunte: 1 kg a cada 4 m², convertido para pacotes de 1 kg
@@ -123,7 +144,7 @@ function calcular() {
   html += `<li>Rejunte: <span class="destaque">${rejuntePacotes} pacote(s)</span></li>`;
 
   // ===== ESPAÇADOR =====
-  if (tipo === "ceramica" && acabamento === "boleado") {
+  if (usarCruzeta) {
     // Cruzeta (pacotes de 100)
     const pacotes100 = Math.ceil(espacadores / 100);
     html += `<li>Espaçador Cruzeta: <span class="destaque">${espacadores} unidades</span></li>`;
