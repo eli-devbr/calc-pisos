@@ -24,6 +24,25 @@ document.getElementById("tipo").addEventListener("change", function () {
     campo.classList.add("hidden");
     document.getElementById("acabamento").value = "";
   }
+  // Fecha o select após a escolha
+  this.blur();
+});
+
+// Fecha os outros selects automaticamente ao selecionar um item
+["tamanho", "acabamento"].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener("change", function () {
+      this.blur();
+    });
+  }
+});
+
+// Também fecha os radios de argamassa (ajuda no mobile)
+document.querySelectorAll('input[name="argamassa"]').forEach(radio => {
+  radio.addEventListener("change", function () {
+    this.blur();
+  });
 });
 
 function getFator(tamanho) {
@@ -134,4 +153,12 @@ function calcular() {
   const resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = html;
   resultadoDiv.classList.remove("hidden");
+
+  // ===== ROLA A TELA SUAVEMENTE ATÉ O RESULTADO =====
+  setTimeout(() => {
+    resultadoDiv.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 100);
 }
