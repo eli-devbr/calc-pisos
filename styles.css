@@ -149,11 +149,11 @@ h1 {
   pointer-events: none;
 }
 
-/* Chave (thumb) da alavanca – posição inicial centralizada (corrigida) */
+/* Chave (thumb) da alavanca – centralizada verticalmente */
 .radio-group::before {
   content: "";
   position: absolute;
-  top: 4px;
+  top: 50%;
   left: 50%;
   width: calc(50% - 10px);
   height: calc(100% - 8px);
@@ -168,7 +168,7 @@ h1 {
     0 2px 8px rgba(0, 0, 0, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.95),
     inset 0 -1px 1px rgba(148, 163, 184, 0.2);
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   transition:
     left 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
     width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -184,7 +184,7 @@ h1 {
 .radio-group:has(label:first-child input:checked)::before {
   left: 5px;
   width: calc(50% - 10px);
-  transform: translateX(0);
+  transform: translate(0, -50%);
   background: linear-gradient(
     145deg,
     rgba(34, 197, 94, 0.9) 0%,
@@ -213,7 +213,7 @@ h1 {
 .radio-group:has(label:last-child input:checked)::before {
   left: calc(50% + 5px);
   width: calc(50% - 10px);
-  transform: translateX(0);
+  transform: translate(0, -50%);
   background: linear-gradient(
     145deg,
     rgba(239, 68, 68, 0.85) 0%,
@@ -259,17 +259,21 @@ select {
   );
   color: #1e293b;
   margin-bottom: 18px;
+  outline: none;
+  caret-color: #0ea5e9;
+}
+
+/* Transição padrão (sem background/transform para evitar animação da seta do select) */
+input {
   transition:
     border-color 0.35s ease,
     background 0.35s ease,
     box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
     letter-spacing 0.25s ease,
     transform 0.3s ease;
-  outline: none;
-  caret-color: #0ea5e9;
 }
 
-/* Select – setinha movida para dentro */
+/* Select – transição isolada (sem animar a setinha) */
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -279,6 +283,9 @@ select {
   background-position: right 14px center;
   background-size: 12px;
   padding-right: 40px;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Number input – setinhas (spinners) um pouco mais para dentro */
@@ -357,12 +364,14 @@ button {
   letter-spacing: 0.4px;
   box-shadow: 0 4px 14px rgba(14, 165, 233, 0.28);
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
   transition:
     background-position 0.8s ease,
     transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
     box-shadow 0.3s ease;
   position: relative;
-  -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
