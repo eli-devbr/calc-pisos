@@ -1,4 +1,4 @@
-// Niveladores (bases) por m²
+// Niveladores (bases por m²)
 const fatores = {
   "20x20": 80,
   "30x30": 44,
@@ -17,19 +17,19 @@ const fatores = {
 
 // Cruzetas (unidades por m²)
 const fatoresCruzeta = {
-  "20x20": 36,
-  "30x30": 20,
-  "33x33": 18,
-  "45x45": 10,
-  "50x50": 8,
-  "60x60": 6,
-  "60x90": 5,
-  "60x120": 4,
-  "80x80": 4,
-  "90x90": 3,
-  "100x100": 3,
-  "120x120": 2.5,
-  "120x180": 2
+  "20x20": 64,
+  "30x30": 36,
+  "33x33": 30,
+  "45x45": 20,
+  "50x50": 16,
+  "60x60": 11,
+  "60x90": 9,
+  "60x120": 8,
+  "80x80": 7,
+  "90x90": 6,
+  "100x100": 5,
+  "120x120": 4,
+  "120x180": 3
 };
 
 // Mostra/esconde o campo de acabamento conforme o tipo
