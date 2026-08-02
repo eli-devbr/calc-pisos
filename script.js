@@ -103,7 +103,7 @@ function calcular() {
     if (tipo === "porcelanato") {
       // Porcelanato: 1 saco a cada 3 m² (sem grátis)
       const argamassa = Math.ceil(area / 3);
-      html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span> (1 a cada 3 m²)</li>`;
+      html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span></li>`;
     } else {
       // Cerâmica (retificado ou boleado)
       const gratis = Math.ceil(area / 4);
@@ -116,7 +116,7 @@ function calcular() {
   } else {
     // Não elegível → unifica tudo
     const argamassa = Math.ceil(area / 3);
-    html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span> (1 a cada 3 m²)</li>`;
+    html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span></li>`;
   }
 
   // ===== REJUNTE =====
