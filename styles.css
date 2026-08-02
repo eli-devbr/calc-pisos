@@ -149,13 +149,13 @@ h1 {
   pointer-events: none;
 }
 
-/* Chave (thumb) da alavanca – posição inicial centralizada */
+/* Chave (thumb) da alavanca – posição inicial centralizada (corrigida) */
 .radio-group::before {
   content: "";
   position: absolute;
   top: 4px;
   left: 50%;
-  width: calc(50% - 8px);
+  width: calc(50% - 10px);
   height: calc(100% - 8px);
   border-radius: 50px;
   background: linear-gradient(
@@ -182,8 +182,8 @@ h1 {
 .radio-group:has(input[value="sim"]:checked)::before,
 .radio-group:has(input[value="Sim"]:checked)::before,
 .radio-group:has(label:first-child input:checked)::before {
-  left: 4px;
-  width: calc(50% - 8px);
+  left: 5px;
+  width: calc(50% - 10px);
   transform: translateX(0);
   background: linear-gradient(
     145deg,
@@ -211,8 +211,8 @@ h1 {
 .radio-group:has(input[value="não"]:checked)::before,
 .radio-group:has(input[value="Não"]:checked)::before,
 .radio-group:has(label:last-child input:checked)::before {
-  left: calc(50% + 4px);
-  width: calc(50% - 8px);
+  left: calc(50% + 5px);
+  width: calc(50% - 10px);
   transform: translateX(0);
   background: linear-gradient(
     145deg,
@@ -355,7 +355,7 @@ button {
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.4px;
-  box-shadow: none;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.28);
   outline: none;
   transition:
     background-position 0.8s ease,
@@ -368,26 +368,27 @@ button {
 button:hover {
   transform: translateY(-2px);
   background-position: 100% 50%;
-  box-shadow: none;
+  box-shadow: 0 8px 22px rgba(14, 165, 233, 0.38);
 }
 
 button:active {
   transform: translateY(0) scale(0.98);
   background-position: 50% 100%;
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
 }
 
-/* Remove a sombra cinza estranha no foco */
+/* Remove qualquer sombra cinza / outline estranho */
 button:focus {
   outline: none;
-  box-shadow: none;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.28);
 }
 
 button:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 3px rgba(14, 165, 233, 0.35),
-    0 0 0 6px rgba(14, 165, 233, 0.15);
+    0 0 0 6px rgba(14, 165, 233, 0.15),
+    0 4px 14px rgba(14, 165, 233, 0.28);
 }
 
 /* ===== Resultado ===== */
