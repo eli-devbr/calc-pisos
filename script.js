@@ -152,30 +152,13 @@ function calcular() {
   html += `<li>Rejunte: <span class="destaque">${rejuntePacotes} pacote(s)</span></li>`;
 
   // ===== ESPAÇADOR =====
+  // Sempre em pacotes de 100 (nivelador e cruzeta)
+  const pacotes = Math.ceil(espacadores / 100);
+
   if (usarCruzeta) {
-    // Cruzeta (pacotes de 100)
-    const pacotes100 = Math.ceil(espacadores / 100);
-    html += `<li>Espaçador Cruzeta: <span class="destaque">${espacadores} unidades</span></li>`;
-    html += `<li>→ Pacotes de 100: <span class="destaque">${pacotes100} pacote(s)</span></li>`;
+    html += `<li>Espaçador Cruzeta: <span class="destaque">${pacotes} pacote(s)</span></li>`;
   } else {
-    // Nivelador (pacotes de 50 ou 100) — usado em porcelanato e cerâmica retificado
-    let pacotes100 = Math.floor(espacadores / 100);
-    let resto = espacadores % 100;
-    let pacotes50 = resto > 0 ? Math.ceil(resto / 50) : 0;
-
-    // Se sobrou 2 pacotes de 50 (equivalente a 100), vira mais um de 100
-    if (pacotes50 === 2) {
-      pacotes100 += 1;
-      pacotes50 = 0;
-    }
-
-    html += `<li>Espaçador Nivelador: <span class="destaque">${espacadores} unidades</span></li>`;
-    html += `<li>→ Sugestão de pacotes: `;
-    if (pacotes100 > 0) html += `${pacotes100} × 100`;
-    if (pacotes100 > 0 && pacotes50 > 0) html += " + ";
-    if (pacotes50 > 0) html += `${pacotes50} × 50`;
-    if (pacotes100 === 0 && pacotes50 === 0) html += "0";
-    html += `</li>`;
+    html += `<li>Espaçador Nivelador: <span class="destaque">${pacotes} pacote(s)</span></li>`;
   }
 
   html += "</ul>";
