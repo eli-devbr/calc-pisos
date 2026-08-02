@@ -164,17 +164,6 @@ h1 {
     inset 0 -1px 2px rgba(2, 132, 199, 0.3);
 }
 
-.radio-group input[type="radio"]:checked::after {
-  content: "";
-  display: block;
-  width: 6px;
-  height: 6px;
-  margin: 4.5px auto;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
 /* ===== Labels e inputs ===== */
 label {
   display: block;
@@ -223,67 +212,43 @@ button {
   padding: 15px;
   background: linear-gradient(
     135deg,
-    rgba(2, 132, 199, 0.85) 0%,
-    rgba(14, 165, 233, 0.75) 50%,
-    rgba(56, 189, 248, 0.7) 100%
+    #0284c7 0%,
+    #0ea5e9 45%,
+    #38bdf8 70%,
+    #0ea5e9 100%
   );
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-size: 250% 250%;
+  background-position: 0% 50%;
   color: white;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   border-radius: 16px;
   font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.4px;
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4),
-    inset 0 -1px 1px rgba(2, 132, 199, 0.2);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    0 4px 14px rgba(14, 165, 233, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition:
+    background-position 0.8s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
-  overflow: hidden;
-}
-
-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
-  transition: left 0.5s ease;
 }
 
 button:hover {
   transform: translateY(-2px);
-  background: linear-gradient(
-    135deg,
-    rgba(2, 132, 199, 0.95) 0%,
-    rgba(14, 165, 233, 0.85) 50%,
-    rgba(56, 189, 248, 0.8) 100%
-  );
-  border-color: rgba(255, 255, 255, 0.65);
+  background-position: 100% 50%;
   box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 1px rgba(2, 132, 199, 0.25);
-}
-
-button:hover::before {
-  left: 100%;
+    0 6px 18px rgba(14, 165, 233, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 button:active {
   transform: translateY(0) scale(0.98);
+  background-position: 50% 100%;
   box-shadow:
-    0 4px 12px rgba(14, 165, 233, 0.2),
+    0 4px 12px rgba(14, 165, 233, 0.25),
     inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
