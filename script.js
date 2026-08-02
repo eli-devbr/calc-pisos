@@ -1,18 +1,19 @@
-// Tabela de fatores (conjuntos por m² já com 10% de perda)
+// Fatores médios (conjuntos por m²)
+// Considera assentamento comum com pequena margem de segurança.
 const fatores = {
   "20x20": 20,
   "30x30": 11,
   "33x33": 9,
   "45x45": 6.5,
   "50x50": 5.5,
-  "60x60": 4,
-  "60x90": 3,
-  "60x120": 2.8,
-  "80x80": 2.8,
-  "90x90": 2.2,
-  "100x100": 2,
-  "120x120": 1.7,
-  "120x180": 1.3
+  "60x60": 4.2,
+  "60x90": 3.6,
+  "60x120": 3.5,
+  "80x80": 3.2,
+  "90x90": 2.8,
+  "100x100": 2.6,
+  "120x120": 2.2,
+  "120x180": 1.8
 };
 
 // Mostra/esconde o campo de acabamento conforme o tipo
