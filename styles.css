@@ -79,7 +79,7 @@ h1 {
     inset 0 -1px 1px rgba(148, 163, 184, 0.2);
 }
 
-/* ===== Rádios Liquid Glass ===== */
+/* ===== Rádios Liquid Glass - Alavanca Horizontal ===== */
 .pergunta {
   display: block;
   font-weight: 600;
@@ -89,109 +89,151 @@ h1 {
 }
 
 .radio-group {
+  position: relative;
   display: flex;
-  gap: 28px;
+  width: 160px;
+  height: 44px;
   margin-bottom: 22px;
-  align-items: center;
-}
-
-.radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #334155;
-  margin-bottom: 0;
-  line-height: 1;
-}
-
-.radio-group input[type="radio"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  min-height: 18px;
-  aspect-ratio: 1 / 1;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.55) 0%,
     rgba(255, 255, 255, 0.25) 100%
   );
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow:
-    0 2px 6px rgba(14, 165, 233, 0.08),
+    0 4px 16px rgba(14, 165, 233, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(148, 163, 184, 0.15);
+  overflow: hidden;
   cursor: pointer;
+  transition: box-shadow 0.4s ease;
+}
+
+.radio-group:hover {
+  box-shadow:
+    0 6px 20px rgba(14, 165, 233, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    inset 0 -1px 1px rgba(148, 163, 184, 0.2);
+}
+
+/* Labels como áreas clicáveis */
+.radio-group label {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.35s ease;
+  line-height: 1;
+}
+
+/* Esconde o input nativo */
+.radio-group input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Chave (thumb) da alavanca */
+.radio-group::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: calc(50% - 6px);
+  height: calc(100% - 8px);
+  border-radius: 50px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(241, 245, 249, 0.5) 100%
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(148, 163, 184, 0.2);
+  transform: translateX(-50%);
   transition:
-    border-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  vertical-align: middle;
+    left 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  z-index: 1;
 }
 
-.radio-group input[type="radio"]:hover {
-  border-color: rgba(56, 189, 248, 0.8);
+/* === Estado SIM (esquerda - verde) === */
+.radio-group:has(input[value="sim"]:checked)::before,
+.radio-group:has(input[value="Sim"]:checked)::before,
+.radio-group:has(label:first-child input:checked)::before {
+  left: 4px;
+  width: calc(50% - 4px);
+  transform: translateX(0);
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(224, 242, 254, 0.4) 100%
+    rgba(34, 197, 94, 0.9) 0%,
+    rgba(74, 222, 128, 0.75) 100%
   );
+  border-color: rgba(34, 197, 94, 0.6);
   box-shadow:
-    0 3px 10px rgba(14, 165, 233, 0.15),
-    inset 0 1px 1px rgba(255, 255, 255, 1),
-    inset 0 -1px 1px rgba(148, 163, 184, 0.1);
-  transform: scale(1.08);
-}
-
-.radio-group input[type="radio"]:checked {
-  border-color: rgba(14, 165, 233, 0.9);
-  background: linear-gradient(
-    145deg,
-    rgba(14, 165, 233, 0.85) 0%,
-    rgba(56, 189, 248, 0.7) 100%
-  );
-  box-shadow:
-    0 0 0 4px rgba(14, 165, 233, 0.18),
-    0 0 12px rgba(14, 165, 233, 0.35),
-    0 2px 8px rgba(14, 165, 233, 0.2),
+    0 0 0 3px rgba(34, 197, 94, 0.2),
+    0 0 14px rgba(34, 197, 94, 0.35),
+    0 2px 8px rgba(34, 197, 94, 0.25),
     inset 0 1px 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 2px rgba(2, 132, 199, 0.3);
-  transform: scale(1.12);
-  animation: radioPulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    inset 0 -1px 2px rgba(21, 128, 61, 0.3);
 }
 
-@keyframes radioPulse {
-  0% {
-    transform: scale(0.85);
-    box-shadow:
-      0 0 0 0 rgba(14, 165, 233, 0),
-      0 0 0 rgba(14, 165, 233, 0),
-      inset 0 1px 1px rgba(255, 255, 255, 0.5),
-      inset 0 -1px 2px rgba(2, 132, 199, 0.3);
-  }
-  50% {
-    transform: scale(1.18);
-  }
-  100% {
-    transform: scale(1.12);
-    box-shadow:
-      0 0 0 4px rgba(14, 165, 233, 0.18),
-      0 0 12px rgba(14, 165, 233, 0.35),
-      0 2px 8px rgba(14, 165, 233, 0.2),
-      inset 0 1px 1px rgba(255, 255, 255, 0.5),
-      inset 0 -1px 2px rgba(2, 132, 199, 0.3);
-  }
+.radio-group:has(input[value="sim"]:checked) label:first-child,
+.radio-group:has(input[value="Sim"]:checked) label:first-child,
+.radio-group:has(label:first-child input:checked) label:first-child {
+  color: #166534;
+  font-weight: 700;
+}
+
+/* === Estado NÃO (direita) === */
+.radio-group:has(input[value="nao"]:checked)::before,
+.radio-group:has(input[value="não"]:checked)::before,
+.radio-group:has(input[value="Não"]:checked)::before,
+.radio-group:has(label:last-child input:checked)::before {
+  left: calc(50% + 2px);
+  width: calc(50% - 6px);
+  transform: translateX(0);
+  background: linear-gradient(
+    145deg,
+    rgba(239, 68, 68, 0.85) 0%,
+    rgba(248, 113, 113, 0.7) 100%
+  );
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow:
+    0 0 0 3px rgba(239, 68, 68, 0.18),
+    0 0 12px rgba(239, 68, 68, 0.3),
+    0 2px 8px rgba(239, 68, 68, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 2px rgba(185, 28, 28, 0.3);
+}
+
+.radio-group:has(input[value="nao"]:checked) label:last-child,
+.radio-group:has(input[value="não"]:checked) label:last-child,
+.radio-group:has(input[value="Não"]:checked) label:last-child,
+.radio-group:has(label:last-child input:checked) label:last-child {
+  color: #991b1b;
+  font-weight: 700;
 }
 
 /* ===== Labels e inputs ===== */
@@ -400,6 +442,11 @@ button:active {
   }
 
   .radio-group {
-    gap: 20px;
+    width: 140px;
+    height: 40px;
+  }
+
+  .radio-group label {
+    font-size: 0.8rem;
   }
 }
