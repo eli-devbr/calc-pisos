@@ -105,7 +105,15 @@ function calcular() {
     return;
   }
 
-  const elegivelGratis = argamassaGratis.value === "sim";
+  // Porcelanato não tem direito a argamassa grátis → força "não" se estiver marcado "sim"
+  if (tipo === "porcelanato" && argamassaGratis.value === "sim") {
+    const radioNao = document.querySelector('input[name="argamassa"][value="nao"]');
+    if (radioNao) {
+      radioNao.checked = true;
+    }
+  }
+
+  const elegivelGratis = document.querySelector('input[name="argamassa"]:checked').value === "sim";
   const usarCruzeta = (tipo === "ceramica" && acabamento === "boleado");
 
   // Cálculos comuns
