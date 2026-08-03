@@ -1,18 +1,16 @@
 // Niveladores (bases por m²)
 const fatores = {
-  "20x20": 80,
   "30x30": 44,
-  "33x33": 36,
-  "45x45": 26,
-  "50x50": 22,
-  "60x60": 17,
-  "60x90": 14,
-  "60x120": 14,
-  "80x80": 13,
-  "90x90": 11,
-  "100x100": 10,
-  "120x120": 9,
-  "120x180": 8
+  "45x45": 20,
+  "50x50": 16,
+  "30x60": 22,
+  "40x60": 17,
+  "60x60": 11,
+  "80x80": 7,
+  "90x90": 5,
+  "100x100": 8,
+  "60x120": 12,
+  "120x120": 6
 };
 
 // Cruzetas (unidades por m²)
@@ -43,6 +41,17 @@ document.getElementById("tipo").addEventListener("change", function () {
   }
   // Fecha o select após a escolha
   this.blur();
+
+  // Se mudou para porcelanato e estava marcado "sim", força "não"
+  if (this.value === "porcelanato") {
+    const radioSim = document.querySelector('input[name="argamassa"][value="sim"]');
+    const radioNao = document.querySelector('input[name="argamassa"][value="nao"]');
+    if (radioSim && radioSim.checked && radioNao) {
+      radioNao.checked = true;
+      // Dispara o evento change para manter consistência em qualquer dispositivo
+      radioNao.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
 });
 
 // Fecha os outros selects automaticamente ao selecionar um item
@@ -55,10 +64,15 @@ document.getElementById("tipo").addEventListener("change", function () {
   }
 });
 
-// Também fecha os radios de argamassa (ajuda no mobile)
+// Também fecha os radios de argamassa (ajuda no mobile) e garante funcionamento em qualquer dispositivo
 document.querySelectorAll('input[name="argamassa"]').forEach(radio => {
   radio.addEventListener("change", function () {
     this.blur();
+  });
+  // Garante que o clique/tap funcione bem em mobile (alguns browsers atrasam o change)
+  radio.addEventListener("click", function () {
+    // Força a atualização do estado checked imediatamente
+    this.checked = true;
   });
 });
 
@@ -110,9 +124,12 @@ function calcular() {
     const radioNao = document.querySelector('input[name="argamassa"][value="nao"]');
     if (radioNao) {
       radioNao.checked = true;
+      // Dispara o evento para garantir consistência
+      radioNao.dispatchEvent(new Event("change", { bubbles: true }));
     }
   }
 
+  // Re-lê após possível alteração forçada
   const elegivelGratis = document.querySelector('input[name="argamassa"]:checked').value === "sim";
   const usarCruzeta = (tipo === "ceramica" && acabamento === "boleado");
 
@@ -128,22 +145,16 @@ function calcular() {
 
   // ===== ARGAMASSA =====
   if (elegivelGratis) {
-    // Lógica normal (com grátis)
-    if (tipo === "porcelanato") {
-      // Porcelanato: 1 saco a cada 3 m² (sem grátis)
-      const argamassa = Math.ceil(area / 3);
-      html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span></li>`;
-    } else {
-      // Cerâmica (retificado ou boleado)
-      const gratis = Math.ceil(area / 4);
-      const totalNecessario = Math.ceil(area / 3);
-      const adicionais = Math.max(0, totalNecessario - gratis);
+    // Lógica normal (com grátis) – apenas para cerâmica
+    // Argamassa grátis: pega apenas a parte inteira (sem arredondar para cima)
+    const gratis = Math.floor(area / 4);
+    const totalNecessario = Math.ceil(area / 3);
+    const adicionais = Math.max(0, totalNecessario - gratis);
 
-      html += `<li>Argamassa AC1 grátis: <span class="destaque">${gratis} saco(s)</span></li>`;
-      html += `<li>Argamassa adicional necessária: <span class="destaque">${adicionais} saco(s)</span></li>`;
-    }
+    html += `<li>Argamassa AC1 grátis: <span class="destaque">${gratis} saco(s)</span></li>`;
+    html += `<li>Argamassa adicional necessária: <span class="destaque">${adicionais} saco(s)</span></li>`;
   } else {
-    // Não elegível → unifica tudo
+    // Não elegível → unifica tudo (inclui porcelanato)
     const argamassa = Math.ceil(area / 3);
     html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span></li>`;
   }
@@ -163,7 +174,7 @@ function calcular() {
 
   html += "</ul>";
   html += `<p class="obs">* Os espaçadores já incluem 10% de margem de perda conforme tabela de fatores.<br>
-  * Valores arredondados para cima (Math.ceil).</p>`;
+  * Valores arredondados para cima (Math.ceil), exceto a argamassa grátis que usa apenas a parte inteira (Math.floor).</p>`;
 
   const resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = html;
