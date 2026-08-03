@@ -148,14 +148,16 @@ function calcular() {
     // Lógica normal (com grátis) – apenas para cerâmica
     // Argamassa grátis: pega apenas a parte inteira (sem arredondar para cima)
     const gratis = Math.floor(area / 4);
-    const totalNecessario = Math.ceil(area / 3);
+    // Total necessário: usa apenas a parte inteira (sem arredondar para cima)
+    const totalNecessario = Math.floor(area / 3);
     const adicionais = Math.max(0, totalNecessario - gratis);
 
     html += `<li>Argamassa AC1 grátis: <span class="destaque">${gratis} saco(s)</span></li>`;
     html += `<li>Argamassa adicional necessária: <span class="destaque">${adicionais} saco(s)</span></li>`;
   } else {
     // Não elegível → unifica tudo (inclui porcelanato)
-    const argamassa = Math.ceil(area / 3);
+    // Usa apenas a parte inteira (sem arredondar para cima)
+    const argamassa = Math.floor(area / 3);
     html += `<li>Argamassa necessária: <span class="destaque">${argamassa} saco(s)</span></li>`;
   }
 
@@ -174,7 +176,7 @@ function calcular() {
 
   html += "</ul>";
   html += `<p class="obs">* Os espaçadores já incluem 10% de margem de perda conforme tabela de fatores.<br>
-  * Valores arredondados para cima (Math.ceil), exceto a argamassa grátis que usa apenas a parte inteira (Math.floor).</p>`;
+  * Valores arredondados para cima (Math.ceil), exceto a argamassa (grátis e necessária) que usa apenas a parte inteira (Math.floor).</p>`;
 
   const resultadoDiv = document.getElementById("resultado");
   resultadoDiv.innerHTML = html;
